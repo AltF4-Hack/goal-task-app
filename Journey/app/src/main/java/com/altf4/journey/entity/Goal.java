@@ -40,7 +40,7 @@ public class Goal {
     }
 
     public Double getPercentageCompletion() {
-        return (this.taskCompleted / this.taskList.size()) * 100.0;
+        return (this.taskCompleted / (double) this.taskList.size()) * 100.0;
     }
 
     public int getNumOfTaskCompleted() {
