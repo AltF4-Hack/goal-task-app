@@ -21,10 +21,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:gravity="end"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:translationX="-10dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleX="1.7"
+                    android:scaleY="1.7"
+                    android:translationX="-130dp"
+                    app:srcCompat="@drawable/journeylogotransparent" />
 
                 <Switch
                     android:id="@+id/switch1"
@@ -32,14 +43,17 @@
                     android:layout_height="wrap_content"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
-                    android:thumbTint="@color/dblue" />
+                    android:thumbTint="@color/dblue"
+                    android:translationX="-10dp"
+                    android:translationY="20dp" />
+
             </LinearLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <LinearLayout
@@ -55,31 +69,41 @@
                     android:layout_marginBottom="16dp"
                     android:ems="10"
                     android:gravity="center"
-                    android:scaleX="2"
-                    android:scaleY="2"
-                    android:text="Welcome" />
+                    android:scaleX="3"
+                    android:scaleY="3"
+                    android:text="Welcome First Name, Last Name"
+                    android:textColor="@color/dblue"
+                    android:translationY="10dp" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="122dp">
-
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
+                    android:layout_height="122dp"
+                    android:translationY="30dp">
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Title of Goal" />
+                        android:gravity="center"
+                        android:scaleX="2"
+                        android:scaleY="2"
+                        android:text="Title of Goal"
+                        android:translationY="10dp" />
 
                     <TextView
                         android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Date"
+                        android:translationY="30dp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView" />
+                        android:text="percent"
+                        android:translationY="40dp" />
 
                     <ProgressBar
                         android:id="@+id/progressBar4"
@@ -89,6 +113,12 @@
                         android:scaleX="0.8"
                         android:scaleY="4"
                         android:translationY="35dp" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/lightblue" />
 
                 </FrameLayout>
 
@@ -100,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
