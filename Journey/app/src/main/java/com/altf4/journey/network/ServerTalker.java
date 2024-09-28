@@ -2,6 +2,7 @@ package com.altf4.journey.network;
 
 import android.content.Context;
 
+import com.altf4.journey.entity.Validatable;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -49,6 +50,23 @@ public class ServerTalker {
         };
 
         requestQueue.add(stringRequest);
+    }
+
+    public static void validateData(String data, Validatable dataField) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_TARGET,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response == null) {
+                            dataField.displayInvalid();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dataField.displayServerError();
+            }
+        });
     }
 
 }
