@@ -2,9 +2,11 @@ package com.altf4.journey.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-public class Goal {
+public class Goal implements Representable {
     private UUID id;
     private String title;
     private LocalDateTime startDate;
@@ -65,4 +67,17 @@ public class Goal {
         this.taskList.add(taskToBeAdded);
     }
 
+    public Map<String, Object> getDatabaseRepresentation() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", this.id);
+        map.put("title", this.title);
+        map.put("startDate", this.startDate);
+        map.put("taskCompleted", this.taskCompleted);
+        Map<String, Object> nestedMap = new HashMap<>();
+        for (Task task : this.taskList) {
+            nestedMap.put(task.getTaskId().toString(), task.getDatabaseRepresentation());
+        }
+        map.put("taskList", nestedMap);
+        return map;
+    }
 }

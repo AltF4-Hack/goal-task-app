@@ -1,7 +1,7 @@
 package com.altf4.journey.entity;
 import java.util.*;
 
-public class User {
+public class User implements Representable {
     private UUID id;
     private String username;
     private String firstName;
@@ -48,5 +48,20 @@ public class User {
         this.goals.remove(goalToBeRemoved);
 
         return goalToBeRemoved;
+    }
+
+    public Map<String, Object> getDatabaseRepresentation() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", this.id);
+        map.put("username", this.username);
+        map.put("firstName", this.firstName);
+        map.put("lastName", this.lastName);
+        map.put("password", this.password);
+        Map<String, Object> nestedMap = new HashMap<>();
+        for (Goal goal : this.goals) {
+            nestedMap.put(goal.getGoalId().toString(), goal.getDatabaseRepresentation());
+        }
+        map.put("goals", nestedMap);
+        return map;
     }
 }

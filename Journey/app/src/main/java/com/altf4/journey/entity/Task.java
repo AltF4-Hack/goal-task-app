@@ -1,10 +1,14 @@
 package com.altf4.journey.entity;
 
+import android.os.Build;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-public class Task {
+public class Task implements Representable {
     private UUID id;
     private String title;
     private String description;
@@ -15,7 +19,9 @@ public class Task {
         this.id = UUID.randomUUID();
         this.title = title;
         this.description = description;
-        this.startDate = LocalDateTime.now();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.startDate = LocalDateTime.now();
+        }
         this.endDate = endDate;
         this.isComplete = false;
     }
@@ -54,5 +60,17 @@ public class Task {
 
     public void unCheckTask() {
         this.isComplete = false;
+    }
+
+    // HashMap-based representation
+    public Map<String, Object> getDatabaseRepresentation() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", this.id.toString());
+        map.put("title", this.title);
+        map.put("description", this.description);
+        map.put("startDate", this.startDate.toString());
+        map.put("endDate", this.endDate.toString());
+        map.put("isComplete", this.isComplete);
+        return map;
     }
 }
