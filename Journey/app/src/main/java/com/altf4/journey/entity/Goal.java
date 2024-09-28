@@ -65,4 +65,17 @@ public class Goal {
         this.taskList.add(taskToBeAdded);
     }
 
+    public Map<String, Object> getDatabaseRepresentation() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", this.id);
+        map.put("title", this.title);
+        map.put("startDate", this.startDate);
+        map.put("taskCompleted", this.taskCompleted);
+        Map<String, Object> nestedMap = new HashMap<>();
+        for (Task task : this.taskList) {
+            nestedMap.put(task.getTaskId().toString(), task.getDatabaseRepresentation());
+        }
+        map.put("taskList", nestedMap);
+        return map;
+    }
 }
