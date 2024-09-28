@@ -61,4 +61,8 @@ public class Goal {
         return taskToBeRemoved;
     }
 
+    public void addTask(Task taskToBeAdded) {
+        this.taskList.add(taskToBeAdded);
+    }
+
 }
