@@ -20,13 +20,25 @@ admin.initializeApp({
 
 const db = getFirestore(); // Use Firestore
 
-app.get("/api/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { email, hashedPassword } = req.body;
   if (!email || !hashedPassword) {
-    return res.status(400).json({ error: "Invalid error or password" });
+    return res.status(400).json({ error: "Missing email or password." });
   }
   try {
-    // to do
+    const usersRef = db.collection("users");
+    const querySnapshot = await usersRef.where("email", "==", email).get();
+    if (querySnapshot.empty) {
+      return res.status(400).json({ message: "User does not exist." });
+    }
+
+    const userDoc = querySnapshot.docs[0];
+    const userData = userDoc.data();
+
+    if (hashedPassword != userData.password) {
+      return res.status(401).json({ message: "Invalid password." });
+    }
+    res.status(200).json({ message: "Login successful", userId: userDoc.id });
   } catch (error) {
     console.error("Error logging user:", error);
     res.status(500).json({ error: "An error occurred while logging user" });
@@ -53,7 +65,7 @@ app.get("/api/getUserById/:userId", async (req, res) => {
 });
 
 app.post("/api/addUser", async (req, res) => {
-  const { userId, firstName, lastName, email, password } = req.body;
+  const { userId, firstName, lastName, email, hashedPassword } = req.body;
   try {
     // Ensure required fields are present
     if (!firstName || !lastName || !email || !userId || !password) {
@@ -75,7 +87,7 @@ app.post("/api/addUser", async (req, res) => {
       firstName,
       lastName,
       email,
-      password,
+      hashedPassword,
       goal: null,
     });
 
