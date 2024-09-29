@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-// require("dotenv").config();
+require("dotenv").config();
 
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json"); // Add the correct path to your JSON file
@@ -19,6 +19,12 @@ admin.initializeApp({
 });
 
 const db = getFirestore(); // Use Firestore
+
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to our backend Server hosted on Eric's laptop hehe.",
+  });
+});
 
 app.post("/api/login", async (req, res) => {
   const { email, hashedPassword } = req.body;
@@ -68,7 +74,7 @@ app.post("/api/addUser", async (req, res) => {
   const { userId, firstName, lastName, email, hashedPassword } = req.body;
   try {
     // Ensure required fields are present
-    if (!firstName || !lastName || !email || !userId || !password) {
+    if (!firstName || !lastName || !email || !userId || !hashedPassword) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -127,7 +133,7 @@ app.post("/api/updateUser", async (req, res) => {
   }
 });
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
