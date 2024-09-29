@@ -84,16 +84,26 @@ app.get("/api/getUserById/:userId", async (req, res) => {
 });
 
 app.post("/api/addUser", async (req, res) => {
-  const { userId, firstName, lastName, email, hashedPassword } = req.body;
+  const { user } = req.body;
+  console.log(user);
+  const userData = JSON.parse(user);
   try {
     // Ensure required fields are present
-    if (!firstName || !lastName || !email || !userId || !hashedPassword) {
+    if (
+      !userData.firstName ||
+      !userData.lastName ||
+      !userData.email ||
+      !userData.id ||
+      !userData.password
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
     // Check for duplicate email in Firestore
     const usersRef = db.collection("users");
-    const querySnapshot = await usersRef.where("email", "==", email).get();
+    const querySnapshot = await usersRef
+      .where("email", "==", userData.email)
+      .get();
 
     if (!querySnapshot.empty) {
       // Email already exists, return an error response
@@ -101,12 +111,9 @@ app.post("/api/addUser", async (req, res) => {
     }
 
     // Add the user data to Firestore using the provided userId
-    const docRef = db.collection("users").doc(userId);
+    const docRef = db.collection("users").doc(userData.id);
     await docRef.set({
-      firstName,
-      lastName,
-      email,
-      hashedPassword,
+      ...userData,
       goal: null,
     });
 
