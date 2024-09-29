@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Goal {
+public class Goal implements Representable {
     private UUID id;
     private String title;
     private LocalDateTime startDate;
@@ -63,6 +63,30 @@ public class Goal {
 
     public void addTask(Task taskToBeAdded) {
         this.taskList.add(taskToBeAdded);
+    }
+
+    public String getDatabaseRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("  \"id\": \"" + this.id + "\",\n");
+        sb.append("  \"title\": \"" + this.title + "\",\n");
+        sb.append("  \"startDate\": \"" + this.startDate + "\",\n");
+        sb.append("  \"taskCompleted\": \"" + this.taskCompleted + "\",\n");
+
+        // Adding tasks as a nested object
+        sb.append("  \"taskList\": {\n");
+        for (Task task : this.taskList) {
+            sb.append("    \"" + task.getTaskId().toString() + "\": " + task.getDatabaseRepresentation() + ",\n");
+        }
+        // Removing last comma
+        if (!this.taskList.isEmpty()) {
+            sb.setLength(sb.length() - 2);  // To remove the last comma and newline
+            sb.append("\n");
+        }
+        sb.append("  }\n");
+
+        sb.append("}\n");
+        return sb.toString();
     }
 
 }
