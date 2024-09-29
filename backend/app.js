@@ -83,11 +83,10 @@ app.get("/api/getUserById/:userId", async (req, res) => {
   }
 });
 
-app.post("/api/addUser/:userRepresentation", async (req, res) => {
-  // const { user } = req.body;
-  const userJSONSTRING = req.params.userRepresentation;
-  console.log(userJSONSTRING);
-  const userData = JSON.parse(userJSONSTRING);
+app.post("/api/addUser", async (req, res) => {
+  const { user } = req.body;
+  console.log(user);
+  const userData = JSON.parse(user);
   try {
     // Ensure required fields are present
     if (
@@ -126,12 +125,13 @@ app.post("/api/addUser/:userRepresentation", async (req, res) => {
   }
 });
 
-app.post("/api/updateUser", async (req, res) => {
+app.post("/api/updateUser/:userRepresentation", async (req, res) => {
   // user is a JSON formatted string
-  const { user } = req.body;
+  // const { user } = req.body;
+  const userJSONSTRING = req.params.userRepresentation;
 
   // This will convert this JSON formatted string into a JS Object that we can use
-  const userData = JSON.parse(user);
+  const userData = JSON.parse(userJSONSTRING);
 
   if (!userData || !userData.id) {
     return res.status(400).json({ error: "User data or userId is missing" });
