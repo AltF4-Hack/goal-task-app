@@ -21,9 +21,12 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/api/login", async (req, res) => {
-  const { email, hashedPassword } = req.body;
-  if (!email || !hashedPassword) {
+app.post("/api/login/:loginInfo", async (req, res) => {
+  const loginInfoJSONSTRING = req.params.loginInfo;
+  const loginInfo = JSON.parse(loginInfoJSONSTRING);
+  const { email, password } = loginInfo;
+
+  if (!email || !password) {
     return res.status(400).json({ error: "Missing email or password." });
   }
   try {
@@ -36,7 +39,7 @@ app.post("/api/login", async (req, res) => {
     const userDoc = querySnapshot.docs[0];
     const userData = userDoc.data();
 
-    if (hashedPassword != userData.password) {
+    if (password != userData.password) {
       return res.status(401).json({ message: "Invalid password." });
     }
     res.status(200).json(userData);
@@ -83,10 +86,10 @@ app.get("/api/getUserById/:userId", async (req, res) => {
   }
 });
 
-app.post("/api/addUser", async (req, res) => {
-  const { user } = req.body;
-  console.log(user);
-  const userData = JSON.parse(user);
+app.post("/api/addUser/:userRepresentation", async (req, res) => {
+  const userJSONSTRING = req.params.userRepresentation;
+  console.log(userJSONSTRING);
+  const userData = JSON.parse(userJSONSTRING);
   try {
     // Ensure required fields are present
     if (
