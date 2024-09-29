@@ -35,7 +35,7 @@
                     android:scaleX="1.7"
                     android:scaleY="1.7"
                     android:translationX="-130dp"
-                    app:srcCompat="@drawable/journeylogotransparent" />
+                    app:srcCompat="@drawable/logo" />
 
                 <Switch
                     android:id="@+id/switch1"
