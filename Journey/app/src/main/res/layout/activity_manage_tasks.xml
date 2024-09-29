@@ -21,6 +21,8 @@
         android:background="@color/lightblue"
         android:theme="?attr/actionBarTheme">
 
+
+        <!--          used chatgpt for gravity code -->
       <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
