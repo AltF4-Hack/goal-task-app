@@ -2,6 +2,7 @@ package com.altf4.journey.network;
 
 import android.content.Context;
 
+import com.altf4.journey.entity.User;
 import com.altf4.journey.entity.Validatable;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -67,6 +68,33 @@ public class ServerTalker {
                 dataField.displayServerError();
             }
         });
+    }
+
+    public static void saveNewUser(User user) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userRepresentation", user.getDatabaseRepresentation());
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                SERVER_TARGET+"/api/addUser",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+        };
+    }
+
+    public static void updateUserData(User user) {
+
     }
 
 }
