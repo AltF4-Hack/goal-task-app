@@ -69,6 +69,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onSignUpHypertextClick"
                 android:text=" HERE!"
                 android:textAlignment="viewStart"
                 android:textColor="@color/dblue"
@@ -143,8 +145,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/dblue"
+            android:onClick="onLoginBtnClick"
             android:text="Login"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

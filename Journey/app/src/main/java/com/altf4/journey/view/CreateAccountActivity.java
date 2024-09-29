@@ -157,13 +157,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private boolean validateEmail(String email) {
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            return false;
-        }
-
-        // TODO add the database validation check here
-
-        return true;
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
 }
