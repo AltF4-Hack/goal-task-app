@@ -2,8 +2,6 @@ package com.altf4.journey.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class Goal implements Representable {
@@ -67,17 +65,28 @@ public class Goal implements Representable {
         this.taskList.add(taskToBeAdded);
     }
 
-    public Map<String, Object> getDatabaseRepresentation() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", this.id);
-        map.put("title", this.title);
-        map.put("startDate", this.startDate);
-        map.put("taskCompleted", this.taskCompleted);
-        Map<String, Object> nestedMap = new HashMap<>();
+    public String getDatabaseRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("  \"id\": \"" + this.id + "\",\n");
+        sb.append("  \"title\": \"" + this.title + "\",\n");
+        sb.append("  \"startDate\": \"" + this.startDate + "\",\n");
+        sb.append("  \"taskCompleted\": \"" + this.taskCompleted + "\",\n");
+
+        // Adding tasks as a nested object
+        sb.append("  \"taskList\": {\n");
         for (Task task : this.taskList) {
-            nestedMap.put(task.getTaskId().toString(), task.getDatabaseRepresentation());
+            sb.append("    \"" + task.getTaskId().toString() + "\": " + task.getDatabaseRepresentation() + ",\n");
         }
-        map.put("taskList", nestedMap);
-        return map;
+        // Removing last comma
+        if (!this.taskList.isEmpty()) {
+            sb.setLength(sb.length() - 2);  // To remove the last comma and newline
+            sb.append("\n");
+        }
+        sb.append("  }\n");
+
+        sb.append("}\n");
+        return sb.toString();
     }
+
 }

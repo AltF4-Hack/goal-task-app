@@ -50,18 +50,29 @@ public class User implements Representable {
         return goalToBeRemoved;
     }
 
-    public Map<String, Object> getDatabaseRepresentation() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", this.id);
-        map.put("username", this.username);
-        map.put("firstName", this.firstName);
-        map.put("lastName", this.lastName);
-        map.put("password", this.password);
-        Map<String, Object> nestedMap = new HashMap<>();
+    public String getDatabaseRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("  \"id\": \"" + this.id + "\",\n");
+        sb.append("  \"username\": \"" + this.username + "\",\n");
+        sb.append("  \"firstName\": \"" + this.firstName + "\",\n");
+        sb.append("  \"lastName\": \"" + this.lastName + "\",\n");
+        sb.append("  \"password\": \"" + this.password + "\",\n");
+
+        // Adding goals as a nested object
+        sb.append("  \"goals\": {\n");
         for (Goal goal : this.goals) {
-            nestedMap.put(goal.getGoalId().toString(), goal.getDatabaseRepresentation());
+            sb.append("    \"" + goal.getGoalId().toString() + "\": " + goal.getDatabaseRepresentation() + ",\n");
         }
-        map.put("goals", nestedMap);
-        return map;
+        // Removing last comma
+        if (!this.goals.isEmpty()) {
+            sb.setLength(sb.length() - 2);  // To remove the last comma and newline
+            sb.append("\n");
+        }
+        sb.append("  }\n");
+
+        sb.append("}\n");
+        return sb.toString();
     }
+
 }
