@@ -14,55 +14,56 @@
       android:orientation="vertical"
       app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/lightblue"
-        android:theme="?attr/actionBarTheme">
-
-
-        <!--          used chatgpt for gravity code -->
-      <RelativeLayout
+      <LinearLayout
+          android:id="@+id/header"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_gravity="end"
-          android:gravity="end"
-          android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+          android:layout_height="65dp"
+          android:orientation="horizontal"
+          android:layout_alignParentTop="true"
+          android:background="@color/lightblue"
+          android:gravity="center">
 
-            android:layout_alignParentLeft="true"
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            app:srcCompat="@drawable/logo" />
+          <ImageView
+              android:id="@+id/imageView"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_weight="1.5"
+              android:scaleX="1.7"
+              android:scaleY="1.7"
+              android:translationX="30dp"
+              app:srcCompat="@drawable/logo"
+              android:paddingRight="160dp"/>
 
-        <Switch
-            android:id="@+id/lightDarkMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            android:thumbTint="@color/dblue" />
-      </RelativeLayout>
+          <Switch
+              android:id="@+id/switch1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:scaleX="1.5"
+              android:scaleY="1.5"
+              android:thumbTint="@color/dblue"
+              android:translationX="1dp"
+              android:paddingRight="10dp"/>
 
-    </com.google.android.material.appbar.MaterialToolbar>
+      </LinearLayout>
 
     <TextView
         android:id="@+id/Title"
-        android:layout_below="@id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_below="@id/header"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_centerInParent="true"
+        android:textSize="45sp"
         android:text="Goal Title" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_below="@id/Title"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
         android:text="Date" />
 
     <TextView
@@ -70,6 +71,10 @@
         android:layout_below="@id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
         android:text="Complete%" />
 
     <ProgressBar
@@ -77,89 +82,115 @@
         android:layout_below="@id/percent"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dp"
+        android:scaleX="0.8"
+        android:scaleY="4"
+        android:translationY="-10dp" />
 
     <TextView
         android:id="@+id/tasksIntro"
         android:layout_below="@id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
         android:text="Tasks:" />
   <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
-  <Button
-      android:id="@+id/taskButton"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_allignParentTop="true"
-      android:layout_below="@id/tasksIntro"
-      android:layout_marginTop="20dp"
-
-      android:text="Button" />
-  <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
-  <TextView
-      android:id="@+id/taskTitle"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_allignParentTop="true"
-      android:layout_below="@id/tasksIntro"
-      android:text="Title of Task" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tasksIntro">
-
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" >
-
-<!--        <FrameLayout android:layout_width="match_parent">-->
-
-
-
-
-
-
-
-
-          <TextView
-              android:id="@+id/taskDateText"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/taskButton"
-              android:layout_marginTop="20dp"
-              android:text="Start date - end date" />
-
-          <TextView
-              android:id="@+id/description"
-              android:layout_below="@id/taskDateText"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Description: [insert] " />
-
-          <!--        </FrameLayout>-->
-
-      </RelativeLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-      <Button
-          android:id="@+id/goBack"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Button" />
-
-      <Button
-          android:id="@+id/addNewTask"
+      <FrameLayout
+          android:id="@+id/frameLay"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Button" />
+          android:layout_below="@id/tasksIntro">
 
-    </LinearLayout>
+          <Button
+              android:id="@+id/taskButton"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="10dp"
+              android:backgroundTint="@color/lightblue"  />
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+              <!--        <FrameLayout android:layout_width="match_parent">-->
+
+
+
+
+              <TextView
+                  android:id="@+id/taskTitle"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="25dp"
+                  android:gravity="center"
+                  android:scaleX="2"
+                  android:scaleY="2"
+                  android:text="Title of Task" />
+
+<!--              Set ImageView to invisible if not completed task yet-->
+
+              <ImageView
+                  android:id="@+id/completionMark"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle"
+                  android:layout_weight="1.5"
+                  android:translationX="300dp"
+                  android:translationY = "-10dp"
+                  tools:src="@drawable/completion">
+
+              <TextView
+                  android:id="@+id/taskDateText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle"
+                  android:layout_marginTop="5dp"
+                  android:gravity="center"
+                  android:text="Start date - end date" />
+
+              <TextView
+                  android:id="@+id/description"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskDateText"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp"
+                  android:text="Description: fefuewfuewinhfuxgneiu xewrxby fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
+                  android:layout_marginBottom="30dp"
+                  android:background="@color/white"/>
+
+
+              <!--        </FrameLayout>-->
+
+          </RelativeLayout>
+
+      </FrameLayout>
+
+      <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          android:layout_below="@id/header"
+          android:translationY="600dp">
+
+          <Button
+              android:id="@+id/goBack"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Button" />
+
+          <Button
+              android:id="@+id/addNewTask"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Button" />
+
+      </LinearLayout>
 
   </RelativeLayout>
 
