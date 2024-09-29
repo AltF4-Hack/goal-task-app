@@ -7,101 +7,136 @@
     android:layout_height="match_parent"
     tools:context=".view.ManageGoalsActivity">
 
-  <LinearLayout
+  <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical"
       app:layout_constraintTop_toTopOf="parent">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/lightblue"
         android:theme="?attr/actionBarTheme">
 
-      <LinearLayout
+      <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="end"
           android:gravity="end"
           android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_alignParentLeft="true"
+            android:scaleX="1.7"
+            android:scaleY="1.7"
+            app:srcCompat="@drawable/logo" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/lightDarkMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:scaleX="1.5"
             android:scaleY="1.5"
             android:thumbTint="@color/dblue" />
-      </LinearLayout>
+      </RelativeLayout>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/Title"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Goal Title" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/date"
         android:layout_width="match_parent"
+        android:layout_below="@id/Title"
         android:layout_height="wrap_content"
         android:text="Date" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/percent"
+        android:layout_below="@id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complete%" />
 
     <ProgressBar
         android:id="@+id/progressBar"
+        android:layout_below="@id/percent"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tasksIntro"
+        android:layout_below="@id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tasks:" />
+  <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
+  <Button
+      android:id="@+id/taskButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_allignParentTop="true"
+      android:layout_below="@id/tasksIntro"
+      android:layout_marginTop="20dp"
+
+      android:text="Button" />
+  <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
+  <TextView
+      android:id="@+id/taskTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_allignParentTop="true"
+      android:layout_below="@id/tasksIntro"
+      android:text="Title of Task" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_below="@id/tasksIntro">
 
-      <LinearLayout
+      <RelativeLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
+          android:layout_height="wrap_content" >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="122dp">
+<!--        <FrameLayout android:layout_width="match_parent">-->
 
-          <Button
-              android:id="@+id/button2"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:text="Button" />
+
+
+
+
+
+
 
           <TextView
-              android:id="@+id/textView2"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Title of Task" />
-
-          <TextView
-              android:id="@+id/textView3"
+              android:id="@+id/taskDateText"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:layout_below="@id/taskButton"
+              android:layout_marginTop="20dp"
               android:text="Start date - end date" />
 
-        </FrameLayout>
+          <TextView
+              android:id="@+id/description"
+              android:layout_below="@id/taskDateText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Description: [insert] " />
 
-      </LinearLayout>
+          <!--        </FrameLayout>-->
+
+      </RelativeLayout>
     </ScrollView>
 
     <LinearLayout
@@ -110,18 +145,19 @@
         android:orientation="horizontal">
 
       <Button
-          android:id="@+id/button3"
+          android:id="@+id/goBack"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Button" />
 
       <Button
-          android:id="@+id/button4"
+          android:id="@+id/addNewTask"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="Button" />
+
     </LinearLayout>
 
-  </LinearLayout>
+  </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
