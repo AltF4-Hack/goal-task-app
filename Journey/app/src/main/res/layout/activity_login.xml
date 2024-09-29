@@ -38,16 +38,41 @@
             <TextView
                 android:id="@+id/viewHeading"
                 android:layout_width="match_parent"
-                android:layout_height="750dp"
+                android:layout_height="760dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Login"
+                android:textAlignment="center"
+                android:textColor="@color/dblue"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signUpLink"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="or Sign up"
+                android:textAlignment="viewEnd" />
 
             <TextView
                 android:id="@+id/redirectText"
                 android:layout_width="match_parent"
-                android:layout_height="750dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text=" HERE!"
+                android:textAlignment="viewStart"
+                android:textColor="@color/dblue"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,17 +87,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="TextView" />
+                android:text="Email" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="hint" />
+                    android:ems="10"
+                    android:hint="Enter your email address..."
+                    android:inputType="textEmailAddress" />
+
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -87,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="TextView" />
+                android:text="Password" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -95,23 +124,28 @@
                 android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="hint" />
+                    android:hint="Enter your password..."
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.9" />
+            android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Button" />
+            android:backgroundTint="@color/dblue"
+            android:text="Login"
+            android:textColor="@color/white"/>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
