@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginBtnClick(View view) {
-        onUsernameFocusExit(usernameInput);
+        onUsernameFocusExit(emailInput);
         onPasswordFocusExit(passwordInput);
         if (email == null || password == null) {
             // TODO show error message (not enough fields full)
