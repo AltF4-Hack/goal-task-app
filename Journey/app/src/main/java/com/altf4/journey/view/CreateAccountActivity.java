@@ -14,12 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 import android.util.Patterns;
 
 import com.altf4.journey.R;
+import com.altf4.journey.entity.Updatable;
 import com.altf4.journey.entity.User;
+import com.altf4.journey.network.ResponseContainer;
+import com.altf4.journey.network.ServerTalker;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.StandardCharsets;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity implements Updatable {
 
     private EditText firstNameInput;
     private EditText lastNameInput;
@@ -150,6 +153,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         } else {
             User user = User.getInstance(email, firstName, lastName, firstPassword);
             // TODO add the user to the database
+//            ServerTalker.initRequestQueue(this.getApplicationContext());
+            ServerTalker.saveNewUser(user, new ResponseContainer(this));
 
             // redirect to login page
             startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
@@ -158,6 +163,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private boolean validateEmail(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public boolean updateField(ResponseContainer publisher, String fieldValue) {
+        // TODO display the error message
+        return true;
     }
 
 }

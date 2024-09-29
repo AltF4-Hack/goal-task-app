@@ -1,5 +1,7 @@
 package com.altf4.journey.entity;
 
+import java.util.Map;
+
 public interface Representable {
-    String getDatabaseRepresentation();
+    Map<String, String> getDatabaseRepresentation();
 }
