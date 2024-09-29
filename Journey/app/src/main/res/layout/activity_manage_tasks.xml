@@ -328,14 +328,16 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Back"
-              android:layout_marginLeft="8dp"/>
+              android:layout_marginLeft="8dp"
+              android:backgroundTint="@color/dblue"/>
 
           <Button
               android:id="@+id/addNewTask"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginLeft="150dp"
-              android:text="Add"/>
+              android:text="Add"
+              android:backgroundTint="@color/dgrey"/>
 
       </LinearLayout>
 
