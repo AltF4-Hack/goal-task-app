@@ -57,9 +57,9 @@ public class User implements Representable {
         map.put("firstName", this.firstName);
         map.put("lastName", this.lastName);
         map.put("password", this.password);
-        return map;Map<String, Object> nestedMap = new HashMap<>();
+        Map<String, Object> nestedMap = new HashMap<>();
         for (Goal goal : this.goals) {
-            nestedMap.put(goal.getGoalId().toString(), task.getDatabaseRepresentation());
+            nestedMap.put(goal.getGoalId().toString(), goal.getDatabaseRepresentation());
         }
         map.put("goals", nestedMap);
         return map;

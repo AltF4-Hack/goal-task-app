@@ -2,9 +2,11 @@ package com.altf4.journey.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-public class Goal {
+public class Goal implements Representable {
     private UUID id;
     private String title;
     private LocalDateTime startDate;
