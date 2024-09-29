@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.volley)
+    implementation(libs.guava)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
