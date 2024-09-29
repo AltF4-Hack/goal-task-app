@@ -1,5 +1,6 @@
 package com.altf4.journey.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import android.util.Patterns;
 
 import com.altf4.journey.R;
+import com.altf4.journey.entity.User;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.StandardCharsets;
@@ -97,7 +99,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
     }
-//
+
     public void onNameFocusExit(EditText input) {
         if (input.getText().toString().isEmpty()) {
             input.setError("Name is a required field");
@@ -142,12 +144,24 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
     }
 
+    public void onCreateBtnClick(View view) {
+        if (firstName == null || lastName == null || username == null || firstPassword == null || secondPassword == null) {
+            // TODO show error message
+        } else {
+            User user = User.getInstance(username, firstName, lastName, firstPassword);
+            // TODO add the user to the database
+
+            // redirect to login page
+            startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
+        }
+    }
+
     private boolean validateEmail(String email) {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return false;
         }
 
-        // add the database validation check here
+        // TODO add the database validation check here
 
         return true;
     }
