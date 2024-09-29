@@ -87,7 +87,7 @@ app.get("/api/getUserById/:userId", async (req, res) => {
 });
 
 app.post("/api/addUser", async (req, res) => {
-  const { json } = req.body;]
+  const { json } = req.body;
   console.log(json);
   const userData = JSON.parse(json);
   try {
