@@ -14,22 +14,25 @@ import androidx.core.view.WindowInsetsCompat;
 import android.util.Patterns;
 
 import com.altf4.journey.R;
+import com.altf4.journey.entity.Updatable;
 import com.altf4.journey.entity.User;
+import com.altf4.journey.network.ResponseContainer;
+import com.altf4.journey.network.ServerTalker;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.StandardCharsets;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity implements Updatable {
 
     private EditText firstNameInput;
     private EditText lastNameInput;
-    private EditText usernameInput;
+    private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordReInput;
 
     private String firstName;
     private String lastName;
-    private String username;
+    private String email;
     private String firstPassword;
     private String secondPassword;
 
@@ -50,7 +53,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void createFocusListeners() {
         firstNameInput = (EditText) findViewById(R.id.firstNameInput);
         lastNameInput = (EditText) findViewById(R.id.lastNameInput);
-        usernameInput = (EditText) findViewById(R.id.usernameInput);
+        emailInput = (EditText) findViewById(R.id.usernameInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         passwordReInput = (EditText) findViewById(R.id.passwordReInput);
 
@@ -72,11 +75,11 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
 
-        usernameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-                    onUsernameFocusExit(usernameInput);
+                    onUsernameFocusExit(emailInput);
                 }
             }
         });
@@ -120,7 +123,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         } else if (!validateEmail(input.getText().toString())) {
             input.setError("Invalid email");
         } else {
-            username = input.getText().toString();
+            email = input.getText().toString();
         }
     }
 
@@ -145,11 +148,13 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     public void onCreateBtnClick(View view) {
-        if (firstName == null || lastName == null || username == null || firstPassword == null || secondPassword == null) {
+        if (firstName == null || lastName == null || email == null || firstPassword == null || secondPassword == null) {
             // TODO show error message
         } else {
-            User user = User.getInstance(username, firstName, lastName, firstPassword);
+            User user = User.getInstance(email, firstName, lastName, firstPassword);
             // TODO add the user to the database
+//            ServerTalker.initRequestQueue(this.getApplicationContext());
+            ServerTalker.saveNewUser(user, new ResponseContainer(this));
 
             // redirect to login page
             startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
@@ -158,6 +163,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private boolean validateEmail(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public boolean updateField(ResponseContainer publisher, String fieldValue) {
+        // TODO display the error message
+        return true;
     }
 
 }
