@@ -91,6 +91,7 @@
                             android:layout_weight="1">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/firstNameInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="hint" />
@@ -104,7 +105,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView"
+                            android:id="@+id/fieldHeadingLastName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -116,6 +117,7 @@
                             android:layout_weight="1">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/lastNameInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="hint" />
@@ -143,6 +145,7 @@
                         android:layout_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/usernameInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="hint" />
@@ -169,6 +172,7 @@
                         android:layout_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="hint" />
@@ -195,6 +199,7 @@
                         android:layout_weight="1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordReInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="hint" />
@@ -207,10 +212,11 @@
                     android:layout_weight="0.9" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/createAccountBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="onCreateBtnClick"
                     android:text="Button" />
             </LinearLayout>
         </ScrollView>

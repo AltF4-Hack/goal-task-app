@@ -20,7 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".view.CreateAccountActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".view.LoginActivity"
             android:exported="true">
