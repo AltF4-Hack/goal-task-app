@@ -20,10 +20,10 @@ import java.nio.charset.StandardCharsets;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText usernameInput;
+    private EditText emailInput;
     private EditText passwordInput;
 
-    private String username;
+    private String email;
     private String password;
 
     @Override
@@ -41,14 +41,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createFocusListeners() {
-        usernameInput = findViewById(R.id.loginEmail);
+        emailInput = findViewById(R.id.loginEmail);
         passwordInput = findViewById(R.id.loginPassword);
 
-        usernameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-                    onUsernameFocusExit(usernameInput);
+                    onUsernameFocusExit(emailInput);
                 }
             }
         });
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (!validateEmail(input.getText().toString())) {
             input.setError("Invalid email");
         } else {
-            username = input.getText().toString();
+            email = input.getText().toString();
         }
     }
 
@@ -88,9 +88,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginBtnClick(View view) {
-        if (username == null || password == null) {
+        if (email == null || password == null) {
             // TODO show error message (not enough fields full)
-        } else if (!validateLogin(username, password)) {
+        } else if (!validateLogin(email, password)) {
             // TODO show error message (invalid credentials)
         } else {
             // TODO login the user

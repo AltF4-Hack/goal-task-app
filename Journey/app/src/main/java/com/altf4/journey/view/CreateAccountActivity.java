@@ -23,13 +23,13 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private EditText firstNameInput;
     private EditText lastNameInput;
-    private EditText usernameInput;
+    private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordReInput;
 
     private String firstName;
     private String lastName;
-    private String username;
+    private String email;
     private String firstPassword;
     private String secondPassword;
 
@@ -50,7 +50,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void createFocusListeners() {
         firstNameInput = (EditText) findViewById(R.id.firstNameInput);
         lastNameInput = (EditText) findViewById(R.id.lastNameInput);
-        usernameInput = (EditText) findViewById(R.id.usernameInput);
+        emailInput = (EditText) findViewById(R.id.usernameInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         passwordReInput = (EditText) findViewById(R.id.passwordReInput);
 
@@ -72,11 +72,11 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
 
-        usernameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-                    onUsernameFocusExit(usernameInput);
+                    onUsernameFocusExit(emailInput);
                 }
             }
         });
@@ -120,7 +120,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         } else if (!validateEmail(input.getText().toString())) {
             input.setError("Invalid email");
         } else {
-            username = input.getText().toString();
+            email = input.getText().toString();
         }
     }
 
@@ -145,10 +145,10 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     public void onCreateBtnClick(View view) {
-        if (firstName == null || lastName == null || username == null || firstPassword == null || secondPassword == null) {
+        if (firstName == null || lastName == null || email == null || firstPassword == null || secondPassword == null) {
             // TODO show error message
         } else {
-            User user = User.getInstance(username, firstName, lastName, firstPassword);
+            User user = User.getInstance(email, firstName, lastName, firstPassword);
             // TODO add the user to the database
 
             // redirect to login page

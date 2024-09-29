@@ -3,7 +3,7 @@ import java.util.*;
 
 public class User implements Representable {
     private UUID id;
-    private String username;
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
@@ -11,9 +11,9 @@ public class User implements Representable {
 
     private static User instance;
 
-    private User(String username, String firstName, String lastName, String password) {
+    private User(String email, String firstName, String lastName, String password) {
         this.id = UUID.randomUUID();
-        this.username = username;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -31,8 +31,8 @@ public class User implements Representable {
         return this.id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getEmail() {
+        return this.email;
     }
     public String getFirstName() {
         return this.firstName;
@@ -63,7 +63,7 @@ public class User implements Representable {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
         sb.append("  \"id\": \"" + this.id + "\",\n");
-        sb.append("  \"username\": \"" + this.username + "\",\n");
+        sb.append("  \"email\": \"" + this.email + "\",\n");
         sb.append("  \"firstName\": \"" + this.firstName + "\",\n");
         sb.append("  \"lastName\": \"" + this.lastName + "\",\n");
         sb.append("  \"password\": \"" + this.password + "\",\n");
