@@ -9,13 +9,22 @@ public class User implements Representable {
     private String password;
     private ArrayList<Goal> goals;
 
-    public User(String username, String firstName, String lastName, String password) {
+    private static User instance;
+
+    private User(String username, String firstName, String lastName, String password) {
         this.id = UUID.randomUUID();
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.goals = new ArrayList<Goal>();
+    }
+
+    public static User getInstance(String username, String firstName, String lastName, String password) {
+        if (instance == null) {
+            instance = new User(username, firstName, lastName, password);
+        }
+        return instance;
     }
 
     public UUID getUserId() {
