@@ -3,16 +3,11 @@ const app = express();
 require("dotenv").config();
 
 const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccountKey.json"); // Add the correct path to your JSON file
+const serviceAccount = require("./serviceAccountKey.json");
 
-const {
-  getFirestore,
-  Timestamp,
-  FieldValue,
-  Filter,
-} = require("firebase-admin/firestore");
+const { getFirestore } = require("firebase-admin/firestore");
 
-app.use(express.json()); //
+app.use(express.json());
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
