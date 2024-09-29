@@ -39,7 +39,7 @@ app.post("/api/login", async (req, res) => {
     if (hashedPassword != userData.password) {
       return res.status(401).json({ message: "Invalid password." });
     }
-    res.status(200).json({ message: "Login successful", userId: userDoc.id });
+    res.status(200).json(userData);
   } catch (error) {
     console.error("Error logging user:", error);
     res.status(500).json({ error: "An error occurred while logging user" });
@@ -57,7 +57,7 @@ app.get("/api/getUserByEmail/:email", async (req, res) => {
       return res.status(400).json({ message: "User does not exist." });
     }
     const userData = querySnapshot.docs[0].data();
-    res.status(200).json({ message: "User Found!", userData });
+    res.status(200).json(userData);
   } catch (error) {
     console.error("Error finding user by email:", error);
     res.status(500).json({ error: "An error occurred while getting user" });
@@ -119,13 +119,18 @@ app.post("/api/addUser", async (req, res) => {
 });
 
 app.post("/api/updateUser", async (req, res) => {
-  const user = req.body;
-  if (!user || !user.userId) {
+  // user is a JSON formatted string
+  const { user } = req.body;
+
+  // This will convert this JSON formatted string into a JS Object that we can use
+  const userData = JSON.parse(user);
+
+  if (!userData || !userData.id) {
     return res.status(400).json({ error: "User data or userId is missing" });
   }
   try {
     // Reference to the user document in Firestore
-    const docRef = db.collection("users").doc(user.userId);
+    const docRef = db.collection("users").doc(user.id);
 
     // Check if the document exists
     const docSnapshot = await docRef.get();
@@ -133,6 +138,7 @@ app.post("/api/updateUser", async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
+    // Updates each field in the Firestore for the specific user being updated
     await docRef.update({
       ...(user.firstName && { firstName: user.firstName }),
       ...(user.lastName && { lastName: user.lastName }),
