@@ -6,15 +6,25 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.util.Patterns;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.altf4.journey.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.common.hash.Hashing;
+import com.google.firebase.Firebase;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.nio.charset.StandardCharsets;
 
@@ -25,6 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private String username;
     private String password;
+
+
+    private FirebaseAuth auth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +52,11 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        FirebaseApp.initializeApp(LoginActivity.this);
+        auth = FirebaseAuth.getInstance();
+
         createFocusListeners();
+
     }
 
     private void createFocusListeners() {
@@ -88,10 +107,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginBtnClick(View view) {
+        onUsernameFocusExit(usernameInput);
+        onPasswordFocusExit(passwordInput);
         if (username == null || password == null) {
             // TODO show error message (not enough fields full)
+            Toast.makeText(LoginActivity.this, "not enough fields filled", Toast.LENGTH_SHORT).show();
         } else if (!validateLogin(username, password)) {
             // TODO show error message (invalid credentials)
+            Toast.makeText(LoginActivity.this, "Invalid Credentials ", Toast.LENGTH_SHORT).show();
         } else {
             // TODO login the user
             // redirect to main page
@@ -108,9 +131,21 @@ public class LoginActivity extends AppCompatActivity {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    private boolean validateLogin(String username, String password) {
+    private boolean validateLogin(String email, String password) {
         // TODO use the database authorization to check if the user exists and has the correct password
-        return true;  // stub
+        final boolean[] logged = new boolean[1];
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    logged[0] = true;
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                    logged[0] = false;
+                }
+            }
+        });
+        return false;
     }
-
 }

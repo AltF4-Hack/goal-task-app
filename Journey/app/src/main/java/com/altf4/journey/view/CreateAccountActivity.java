@@ -1,21 +1,31 @@
 package com.altf4.journey.view;
 
+import android.bluetooth.BluetoothAssignedNumbers;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.util.Patterns;
+import android.widget.Toast;
 
 import com.altf4.journey.R;
 import com.altf4.journey.entity.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.common.hash.Hashing;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.nio.charset.StandardCharsets;
 
@@ -33,6 +43,9 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String firstPassword;
     private String secondPassword;
 
+    private Button register;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +58,44 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
 
         createFocusListeners();
+
+        FirebaseApp.initializeApp(CreateAccountActivity.this);
+        auth = FirebaseAuth.getInstance();
+
+        register = findViewById(R.id.createAccountBtn);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text_email = username;
+                String text_password = firstPassword;
+
+                if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)) {
+                    Toast.makeText(CreateAccountActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
+                } else if (text_password.length() < 6) {
+                    Toast.makeText(CreateAccountActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
+                } else {
+                    registerUser(text_email, text_password);
+                }
+            }
+        });
     }
+
+    private void registerUser(String email, String password) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(CreateAccountActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(CreateAccountActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
     private void createFocusListeners() {
         firstNameInput = (EditText) findViewById(R.id.firstNameInput);
@@ -147,13 +197,20 @@ public class CreateAccountActivity extends AppCompatActivity {
     public void onCreateBtnClick(View view) {
         if (firstName == null || lastName == null || username == null || firstPassword == null || secondPassword == null) {
             // TODO show error message
+            Toast.makeText(CreateAccountActivity.this, "Invalid fields", Toast.LENGTH_SHORT).show();
         } else {
             User user = User.getInstance(username, firstName, lastName, firstPassword);
             // TODO add the user to the database
 
+
             // redirect to login page
             startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
         }
+    }
+
+    public void onLoginHypertextClick(View view) {
+        // redirect to create account page
+        startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
     }
 
     private boolean validateEmail(String email) {
