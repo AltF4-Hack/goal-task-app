@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:layout_centerInParent="true"
-        android:textSize="45sp"
+        android:textSize="30sp"
         android:text="Goal Title" />
 
     <TextView
@@ -169,6 +169,151 @@
 
       </FrameLayout>
 
+      <FrameLayout
+          android:id="@+id/frameLay1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/frameLay">
+
+          <Button
+              android:id="@+id/taskButton1"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="10dp"
+              android:backgroundTint="@color/lightblue"  />
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+              <!--        <FrameLayout android:layout_width="match_parent">-->
+
+
+
+
+              <TextView
+                  android:id="@+id/taskTitle1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="25dp"
+                  android:gravity="center"
+                  android:scaleX="2"
+                  android:scaleY="2"
+                  android:text="Title of Task" />
+
+              <!--              Set ImageView to invisible if not completed task yet-->
+
+              <ImageView
+                  android:id="@+id/completionMark1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle1"
+                  android:layout_weight="1.5"
+                  android:translationX="300dp"
+                  android:translationY = "-10dp"
+                  tools:src="@drawable/completion">
+
+              <TextView
+                  android:id="@+id/taskDateText1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle1"
+                  android:layout_marginTop="5dp"
+                  android:gravity="center"
+                  android:text="Start date - end date" />
+
+              <TextView
+                  android:id="@+id/description1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskDateText1"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp"
+                  android:text="Description: fefuewfuewinhfuxgneiu xewrxby fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
+                  android:layout_marginBottom="30dp"
+                  android:background="@color/white"/>
+
+
+              <!--        </FrameLayout>-->
+
+          </RelativeLayout>
+
+      </FrameLayout>
+
+
+      <FrameLayout
+          android:id="@+id/frameLay2"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/frameLay1">
+
+          <Button
+              android:id="@+id/taskButton2"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="10dp"
+              android:backgroundTint="@color/lightblue"  />
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+              <!--        <FrameLayout android:layout_width="match_parent">-->
+
+
+
+
+              <TextView
+                  android:id="@+id/taskTitle2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="25dp"
+                  android:gravity="center"
+                  android:scaleX="2"
+                  android:scaleY="2"
+                  android:text="Title of Task" />
+
+              <!--              Set ImageView to invisible if not completed task yet-->
+
+              <ImageView
+                  android:id="@+id/completionMark2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle2"
+                  android:layout_weight="1.5"
+                  android:translationX="300dp"
+                  android:translationY = "-10dp"
+                  tools:src="@drawable/completion">
+
+              <TextView
+                  android:id="@+id/taskDateText2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskTitle2"
+                  android:layout_marginTop="5dp"
+                  android:gravity="center"
+                  android:text="Start date - end date" />
+
+              <TextView
+                  android:id="@+id/description2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/taskDateText2"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp"
+                  android:text="Description: fefuewfuewinhfuxgneiu xewrxby fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
+                  android:layout_marginBottom="30dp"
+                  android:background="@color/white"/>
+
+
+              <!--        </FrameLayout>-->
+
+          </RelativeLayout>
+
+      </FrameLayout>
+
       <!--          CHANGE ALLIGNPARENTTOP TO RELATIVE TO BUTTON BEFORE FOR EVERY BUTTON AFTER THIS -->
 
       <LinearLayout
@@ -176,19 +321,21 @@
           android:layout_height="match_parent"
           android:orientation="horizontal"
           android:layout_below="@id/header"
-          android:translationY="600dp">
+          android:translationY="610dp">
 
           <Button
               android:id="@+id/goBack"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Button" />
+              android:text="Back"
+              android:layout_marginLeft="8dp"/>
 
           <Button
               android:id="@+id/addNewTask"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Button" />
+              android:layout_marginLeft="150dp"
+              android:text="Add"/>
 
       </LinearLayout>
 
