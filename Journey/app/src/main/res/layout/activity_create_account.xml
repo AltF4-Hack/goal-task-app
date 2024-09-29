@@ -67,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="onLoginBtnClick"
                     android:text=" Log in Here!"
                     android:textColor="@color/dblue"
                     android:textStyle="bold" />
@@ -246,7 +247,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="onCreateBtnClick"
-                    android:text="Button"
+                    android:text="Create Account"
 
                     android:backgroundTint="@color/dblue"/>
             </LinearLayout>
