@@ -86,10 +86,10 @@ app.get("/api/getUserById/:userId", async (req, res) => {
   }
 });
 
-app.post("/api/addUser/:userRepresentation", async (req, res) => {
-  const userJSONSTRING = req.params.userRepresentation;
-  console.log(userJSONSTRING);
-  const userData = JSON.parse(userJSONSTRING);
+app.post("/api/addUser", async (req, res) => {
+  const { json } = req.body;]
+  console.log(json);
+  const userData = JSON.parse(json);
   try {
     // Ensure required fields are present
     if (
