@@ -4,8 +4,6 @@ import android.os.Build;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class Task implements Representable {
@@ -63,14 +61,16 @@ public class Task implements Representable {
     }
 
     // HashMap-based representation
-    public Map<String, Object> getDatabaseRepresentation() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", this.id.toString());
-        map.put("title", this.title);
-        map.put("description", this.description);
-        map.put("startDate", this.startDate.toString());
-        map.put("endDate", this.endDate.toString());
-        map.put("isComplete", this.isComplete);
-        return map;
+    public String getDatabaseRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("  \"id\": \"" + this.id + "\",\n");
+        sb.append("  \"title\": \"" + this.title + "\",\n");
+        sb.append("  \"description\": \"" + this.description + "\",\n");
+        sb.append("  \"startDate\": \"" + this.startDate + "\",\n");
+        sb.append("  \"endDate\": \"" + this.endDate + "\",\n");
+        sb.append("  \"isComplete\": \"" + this.isComplete + "\",\n");
+        sb.append("}\n");
+        return sb.toString();
     }
 }
