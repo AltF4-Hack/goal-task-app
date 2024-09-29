@@ -294,20 +294,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:layout_weight="1"
         android:padding="10dp"
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
+            app:srcCompat="@android:drawable/ic_menu_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/dblue"
             android:clickable="true"
             android:outlineAmbientShadowColor="@color/white"
             app:rippleColor="@color/white"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            app:tint="@color/white"
+            app:fabCustomSize="70dp"
+            app:maxImageSize="40dp"/>
     </LinearLayout>
+
 
 </RelativeLayout>
 
