@@ -231,7 +231,7 @@
                   android:layout_marginTop="10dp"
                   android:layout_marginLeft="20dp"
                   android:layout_marginRight="20dp"
-                  android:text="Description: fefuewfuewinhfuxgneiu xewrxby fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
+                  android:text="Description: fuewfx e fxehuf  fe e fefeyu fehfh fe "
                   android:layout_marginBottom="30dp"
                   android:background="@color/white"/>
 
@@ -304,7 +304,7 @@
                   android:layout_marginTop="10dp"
                   android:layout_marginLeft="20dp"
                   android:layout_marginRight="20dp"
-                  android:text="Description: fefuewfuewinhfuxgneiu xewrxby fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
+                  android:text="Description: fgewfnmxf x huf xfhuewuf  xfeuwfx e fxehuf  fe e fefeyu fehfh fe "
                   android:layout_marginBottom="30dp"
                   android:background="@color/white"/>
 
