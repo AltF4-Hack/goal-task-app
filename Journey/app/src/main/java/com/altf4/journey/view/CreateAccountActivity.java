@@ -70,7 +70,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Updatabl
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text_email = username;
+                String text_email = email;
                 String text_password = firstPassword;
 
                 if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)) {

@@ -139,7 +139,7 @@
                   android:layout_weight="1.5"
                   android:translationX="300dp"
                   android:translationY = "-10dp"
-                  tools:src="@drawable/completion">
+                  tools:src="@drawable/completion"/>
 
               <TextView
                   android:id="@+id/taskDateText"
@@ -212,7 +212,7 @@
                   android:layout_weight="1.5"
                   android:translationX="300dp"
                   android:translationY = "-10dp"
-                  tools:src="@drawable/completion">
+                  tools:src="@drawable/completion"/>
 
               <TextView
                   android:id="@+id/taskDateText1"
@@ -285,7 +285,7 @@
                   android:layout_weight="1.5"
                   android:translationX="300dp"
                   android:translationY = "-10dp"
-                  tools:src="@drawable/completion">
+                  tools:src="@drawable/completion"/>
 
               <TextView
                   android:id="@+id/taskDateText2"

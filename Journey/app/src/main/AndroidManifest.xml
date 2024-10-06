@@ -17,7 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".view.ManageGoalsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".view.CreateAccountActivity"
             android:exported="true" />

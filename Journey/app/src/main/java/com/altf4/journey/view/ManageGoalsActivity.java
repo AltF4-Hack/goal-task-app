@@ -24,6 +24,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ManageGoalsActivity extends AppCompatActivity {
 
     private FloatingActionButton addGoal;
+    // Define the frame layouts in an array
+    private FrameLayout[] frames = new FrameLayout[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,11 @@ public class ManageGoalsActivity extends AppCompatActivity {
             return insets;
         });
 
-        addGoal=findViewById(R.id.floatingActionButton);
+        addGoal = findViewById(R.id.floatingActionButton);
+        frames[0] = (findViewById(R.id.frameLayout1));
+        frames[1] = (findViewById(R.id.frameLayout2));
+        frames[2] = (findViewById(R.id.frameLayout3));
+        frames[3] = (findViewById(R.id.frameLayout4));
 
         addGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +84,6 @@ public class ManageGoalsActivity extends AppCompatActivity {
             }
         });
     }
-    // Define the frame layouts in an array
-    FrameLayout[] frames = {findViewById(R.id.frameLayout1), findViewById(R.id.frameLayout2), findViewById(R.id.frameLayout3), findViewById(R.id.frameLayout4)};
 
     // Function to check goals
     private int checkGoals() {
@@ -94,10 +98,5 @@ public class ManageGoalsActivity extends AppCompatActivity {
         // If all frames are visible, return -1
         return -1;
     }
-
-
-
-
-
 
 }
